@@ -11,48 +11,50 @@ three tries, the program should output the correct answer.
 
 import random
 
-
 def main():
     level = get_level()
-    while True:
+    score = 0
+
+    for _ in range(10):
         x, y = generate_integer(level)
-        answer = int(input(f"{x} + {y} = "))
         tries = 0
-        score = 0
-        if tries < 3:
-            if answer == x+y:
-                score += 1
-                break
-            else:
+
+        while tries < 3:
+            try:
+                answer = int(input(f"{x} + {y} = "))
+                if answer == x + y:
+                    score += 1
+                    break
+                else:
+                    print("EEE")
+                    tries += 1
+            except ValueError:
                 print("EEE")
                 tries += 1
-        else:
-            print(f"{x} + {y} = {x+y}")
-            tries = 0
-        break
-    print(f"Score: {score}")
 
+        if tries == 3:
+            print(f"{x} + {y} = {x + y}")
+
+    print(f"Score: {score}")
 
 
 def get_level():
     while True:
-        level = input("Level: ")
-        if level in [1,2,3]:
-            break
-        else:
+        try:
+            level = int(input("Level: "))
+            if level in [1, 2, 3]:
+                return level
+        except ValueError:
             continue
-    return level
 
 
 def generate_integer(level):
-    try:
-        for x, y in range(1, 10):
-            x = random.randint(1, level*10)
-            y = random.randint(1, level*10)
-    except ValueError:
-        raise ValueError
-    return x, y
-
+    if level == 1:
+        return random.randint(0, 9), random.randint(0, 9)
+    elif level == 2:
+        return random.randint(10, 99), random.randint(10, 99)
+    elif level == 3:
+        return random.randint(100, 999), random.randint(100, 999)
 
 if __name__ == "__main__":
     main()
