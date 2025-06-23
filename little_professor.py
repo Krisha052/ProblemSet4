@@ -8,7 +8,7 @@ and prompt the user again, allowing the user up to three tries in total for that
 three tries, the program should output the correct answer.
 - The program should ultimately output the user’s score: the number of correct answers out of 10.
 """
-hello
+
 import random
 
 def main():
