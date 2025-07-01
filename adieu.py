@@ -14,7 +14,7 @@ def main():
             else:
                 # All but the last two joined with commas
                 print(f"Adieu, adieu, to {', '.join(names[:-1])}, and {names[-1]}")
-            break
+            
 
 if __name__ == "__main__":
     main()
