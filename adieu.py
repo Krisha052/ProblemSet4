@@ -1,4 +1,3 @@
-
 def main():
     names = []
     while True:
